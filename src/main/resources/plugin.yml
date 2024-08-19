@@ -1,0 +1,5 @@
+name: old-horse-breeding
+version: '1.0-SNAPSHOT'
+main: net.haraxx.oldhorsebreeding.OldHorseBreedingPlugin
+api-version: '1.21'
+authors: [ gerolndnr ]

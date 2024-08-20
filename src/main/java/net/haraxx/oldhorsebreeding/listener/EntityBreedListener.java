@@ -20,15 +20,22 @@ public class EntityBreedListener implements Listener {
         AbstractHorse motherHorse = (AbstractHorse) breedEvent.getMother();
         AbstractHorse fatherHorse = (AbstractHorse) breedEvent.getFather();
 
-        breededHorse.setJumpStrength((
-                        ((motherHorse.getJumpStrength() + fatherHorse.getJumpStrength()) / 2)
-                        + new Random().nextDouble(0.6)
-                ) / 2
-        );
+        double randomSpeed = new Random().nextDouble(0.1125, 0.3375);
+        double randomJumpStrength = new Random().nextDouble(0.4, 1);
+        double randomHealth = new Random().nextInt(15, 31);
+
+        breededHorse.setJumpStrength((motherHorse.getJumpStrength() + fatherHorse.getJumpStrength() + randomJumpStrength) / 3);
         breededHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue((
-                (motherHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue()
-                + motherHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue()) / 2
-                + (new Random().nextDouble(0.2250) + 0.1125)
-        ) / 2);
+                motherHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue()
+                + fatherHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue()
+                + randomSpeed
+                ) / 3
+        );
+        breededHorse.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue((
+                motherHorse.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()
+                + fatherHorse.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()
+                + randomHealth
+                ) / 3
+        );
     }
 }

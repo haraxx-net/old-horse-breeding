@@ -20,9 +20,11 @@ public class EntityBreedListener implements Listener {
         AbstractHorse motherHorse = (AbstractHorse) breedEvent.getMother();
         AbstractHorse fatherHorse = (AbstractHorse) breedEvent.getFather();
 
-        double randomSpeed = new Random().nextDouble(0.1125, 0.3375);
-        double randomJumpStrength = new Random().nextDouble(0.4, 1);
-        double randomHealth = new Random().nextInt(15, 31);
+        Random random = new Random();
+
+        double randomSpeed = (0.44999998807907104D + random.nextDouble() * 0.3D + random.nextDouble() * 0.3D + random.nextDouble() * 0.3D) * 0.25D;
+        double randomJumpStrength = 0.4000000059604645D + random.nextDouble() * 0.2D + random.nextDouble() * 0.2D + random.nextDouble() * 0.2D;
+        float randomHealth = 15.0F + (float) random.nextInt(8) + (float) random.nextInt(9);
 
         breededHorse.setJumpStrength((motherHorse.getJumpStrength() + fatherHorse.getJumpStrength() + randomJumpStrength) / 3);
         breededHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue((
